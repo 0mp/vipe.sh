@@ -1,0 +1,82 @@
+.\"
+.\" SPDX-License-Identifier: BSD-2-Clause-FreeBSD
+.\"
+.\" Copyright (c) 2019 Mateusz Piotrowski <0mp@FreeBSD.org>
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.Dd May 23, 2019
+.Dt VIPE.SH 1
+.Os
+.Sh NAME
+.Nm vipe.sh
+.Nd "portable, shell-compatible version of vipe(1) from moreutils"
+.Sh SYNOPSIS
+.Nm
+|
+.Ar ...
+.Sh DESCRIPTION
+.Nm
+is a utility, which makes it possible to use an editor 
+in pipelines of Bourne-compatible shells.
+.Pp
+It aims to address pipeline limitations which result in warnings like:
+.Dq Vim: Warning: Output is not to a terminal .
+.Sh ENVIRONMENT
+The following environmental variables are recognized by
+.Nm :
+.Bl -tag -width "EDITOR (default: unset)"
+.It Ev EDITOR Pq default: Dq vi
+The editor to use if
+.Ev VISUAL
+is not set.
+.It Ev VISUAL Pq default: unset
+The editor to use.
+.El
+.Sh EXIT STATUS
+.Ex -std
+.Sh EXAMPLES
+The following is an example of a typical usage
+of the
+.Nm
+command:
+.Pp
+.Dl "find /usr/ports | vipe.sh | grep 'Important file' > result.txt
+.Sh COMPATIBILITY
+The
+.Nm
+command makes use of
+.Xr mktemp 1
+to create temporary files.
+.Sh SEE ALSO
+.Xr vipe 1 ,
+which is a part of 
+.Lk https://joeyh.name/code/moreutils/ moreutils .
+.Sh HISTORY
+.Nm
+is a reimplementation of the popular, Perl-based
+.Xr vipe 1
+from the moreutils project.
+.Sh AUTHORS
+.Nm
+and this manual page was written by
+.An Mateusz Piotrowski Aq Mt 0mp@FreeBSD.org .
