@@ -24,12 +24,14 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
-.Dd May 23, 2019
+.Dd May 27, 2019
 .Dt VIPE.SH 1
 .Os
 .Sh NAME
 .Nm vipe.sh
-.Nd "portable, shell-compatible version of vipe(1) from moreutils"
+.Nd portable, shell-compatible version of
+.Xr vipe 1
+from moreutils
 .Sh SYNOPSIS
 .Nm
 |
@@ -39,8 +41,14 @@
 is a utility, which makes it possible to use an editor
 in pipelines of Bourne-compatible shells.
 .Pp
-It aims to address pipeline limitations which result in warnings like:
+It aims to address pipeline limitations, which result in warnings like:
 .Dq Vim: Warning: Output is not to a terminal .
+.Sh IMPLEMENTATION NOTES
+The
+.Nm
+command makes use of
+.Xr mktemp 1
+to create temporary files.
 .Sh ENVIRONMENT
 The following environmental variables are recognized by
 .Nm :
@@ -60,13 +68,7 @@ of the
 .Nm
 command:
 .Pp
-.Dl "find /usr/ports | vipe.sh | grep 'Important file' > result.txt
-.Sh COMPATIBILITY
-The
-.Nm
-command makes use of
-.Xr mktemp 1
-to create temporary files.
+.Dl curl wttr.in | vipe.sh | nc termbin.com 9999 | xclip -sel clip
 .Sh SEE ALSO
 .Xr vipe 1 ,
 which is a part of

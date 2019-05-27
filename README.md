@@ -1,6 +1,8 @@
 # NAME
 
-**vipe.sh** - portable, shell-compatible version of vipe(1) from moreutils
+**vipe.sh** - portable, shell-compatible version of
+vipe(1)
+from moreutils
 
 # SYNOPSIS
 
@@ -14,8 +16,16 @@
 is a utility, which makes it possible to use an editor
 in pipelines of Bourne-compatible shells.
 
-It aims to address pipeline limitations which result in warnings like:
+It aims to address pipeline limitations, which result in warnings like:
 "Vim: Warning: Output is not to a terminal".
+
+# IMPLEMENTATION NOTES
+
+The
+**vipe.sh**
+command makes use of
+mktemp(1)
+to create temporary files.
 
 # ENVIRONMENT
 
@@ -43,15 +53,7 @@ of the
 **vipe.sh**
 command:
 
-	find /usr/ports | vipe.sh | grep 'Important file' > result.txt
-
-# COMPATIBILITY
-
-The
-**vipe.sh**
-command makes use of
-mktemp(1)
-to create temporary files.
+	curl wttr.in | vipe.sh | nc termbin.com 9999 | xclip -sel clip
 
 # SEE ALSO
 
