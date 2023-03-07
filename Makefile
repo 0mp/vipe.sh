@@ -11,6 +11,11 @@ install:
 	mkdir -p -- "${DESTDIR}${MANPREFIX}/man/man1"
 	install -m 444 "${VIPE_SH_MAN}" "${DESTDIR}${MANPREFIX}/man/man1"
 
+.PHONY: uninstall
+uninstall:
+	rm -f "${DESTDIR}${PREFIX}/bin/${VIPE_SH_CMD}"
+	rm -f "${DESTDIR}${MANPREFIX}/man/man1/${VIPE_SH_MAN}"
+
 .PHONY: regenerate-readme
 regenerate-readme:
 	mandoc -Tmarkdown "${VIPE_SH_MAN}" | awk 'NR > 2 {print}' \
