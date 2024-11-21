@@ -49,7 +49,6 @@ then :; else
 fi
 trap clean_up EXIT
 
-
 if cat - > "${temp_file}"
 then :; else
 	err cat "${?}" "Failed to save standard input to \"${temp_file}\""
