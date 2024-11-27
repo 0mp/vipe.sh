@@ -54,9 +54,11 @@ then :; else
 	err cat "${?}" "Failed to save standard input to \"${temp_file}\""
 fi
 
-if ${editor} "${temp_file}" < /dev/tty > /dev/tty
-then :; else
-	err "${editor}" "${?}" "Exited with non-zero status"
+if [ ! -t 0 ]; then
+	if ${editor} "${temp_file}" < /dev/tty > /dev/tty
+	then :; else
+		err "${editor}" "${?}" "Exited with non-zero status"
+	fi
 fi
 
 if cat "${temp_file}"
